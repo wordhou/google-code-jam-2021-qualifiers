@@ -111,7 +111,7 @@ In this problem there are 100 competitors to a trivia competition with 10000 que
 
 Not having an especially strong background in statistics, I took a look at the shape of the logistic curve. This plot from Wikipedia ranges from [-6, 6], which conveniently is the range that's relevant to this problem:
 
-(Logistic-curve.svg)
+!(Logistic-curve.svg)
 
 The difference for any given competitor-question pair ranges from -6 to 6 but is [concentrated in the middle](https://en.wikipedia.org/wiki/Triangular_distribution). However, we can infer from the graph that when a competitor has strength close to -3 and a problem has difficulty close to 3, there's almost zero change that the competitor can get the problem right. Even supposing a competitor had average strength, on the most difficult problems it looks like they have less than a 5% chance to get the problem right.
 
