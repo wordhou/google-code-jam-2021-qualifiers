@@ -111,13 +111,13 @@ In this problem there are 100 competitors to a trivia competition with 10000 que
 
 Not having an especially strong background in statistics, I took a look at the shape of the logistic curve. This plot from Wikipedia ranges from [-6, 6], which conveniently is the range that's relevant to this problem:
 
-!(Logistic-curve.svg)
+![Logistic Curve plot from Wikipedia](./Logistic-curve.svg)
 
 The difference for any given competitor-question pair ranges from -6 to 6 but is [concentrated in the middle](https://en.wikipedia.org/wiki/Triangular_distribution). However, we can infer from the graph that when a competitor has strength close to -3 and a problem has difficulty close to 3, there's almost zero change that the competitor can get the problem right. Even supposing a competitor had average strength, on the most difficult problems it looks like they have less than a 5% chance to get the problem right.
 
 This gives us a basis on which to detect a cheater. I rank each competitor by a "cheat-indicator" function which sums the number of times a competitor gets a question right, weighted the difficulty of that question. Since I don't know enough statistics to be able to estimate the difficulty of a question from the data given, I'm using the number of times a question was answered correctly as a proxy for the difficulty of the question. To be specific, I took the inverse fourth power of the number of times a question was answered correctly. The cheat indicator was also weighted inversely by the estimated strength of the competitor, which was estimated by the number of questions they answered correctly. These parameters were arrived at experimentally, choosing values that gave the most separation between the known cheater and second-most-suspicious competitor in the cheat metric.
 
-```
+```haskell
 sums :: [[Char]] -> [Int]
 sums = foldl (zipWith g) (repeat 0) where
   g n '1' = n + 1
