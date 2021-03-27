@@ -62,7 +62,7 @@ solve (x, y, s) = sum . snd $ mapAccumL f (head s) s where
 
 In Reversort Engineering, we're asked to produce a list of integers from `[1..n]` for which the cost of sorting it via Reversort is exactly `c`.
 
-At each step `i` in `[1..n-1]` in the reversort algorithm, we're reversing a list of size N<sub>i</sub>. The first insight is that this value N<sub>i</sub> ranges from [1..i]. The second insight is that the knowing the values of N<sub>i</sub> for a given list uniquely determine the order of the list. A quick sanity check tells us that since the N<sub>i</sub> have `n`, `n-1`, `n-2`, … , `2` possible values, there are exactly n! values for the collection of N<sub>i</sub>, which is equal to the number of possible lists.
+At each step `i` in `[1..n-1]` in the reversort algorithm, we're reversing a list of size N<sub>i</sub>. The first insight is that this value N<sub>i</sub> ranges from [1..i]. The second insight is that the knowing the values of N<sub>i</sub> for a given list uniquely determine the order of the list. A quick proof of this fact: The N<sub>i</sub> have `n`, `n-1`, `n-2`, … , `2` possible values, so there are there are exactly n! values for the collection of N<sub>i</sub>. Since every list can be sorted by reversort, there's a [surjective](https://en.wikipedia.org/wiki/Surjective_function) mapping from every valid N<sub>i</sub> onto every permutation of `[1..n]`. Since the lists have the same size, the mapping must also be [injective](https://en.wikipedia.org/wiki/Injective_function).
 
 Given these two facts, we just need to determine if we can produce a list of integers that satisfies the constraints on our N<sub>i</sub> such that the sum of the N<sub>i</sub> is equal to the cost `c`. Then given those values, we can build the list by reversing the algorithm.
 
@@ -131,7 +131,7 @@ bin (a, b) = foldM f ([], [], []) where
 
 In this problem there are 100 competitors to a trivia competition with 10000 questions. Each competitor can answer a question either correctly or incorrectly. The probability of a competitor answering a question is based on two hidden variables: the strength of the competitor, and the difficulty of the question, which are both uniform on the interval [-3, 3]. The probability distribution is the sigmoid or logistic distribution based on the difference between the competitor's strength and the questions difficulty.
 
-Not having an especially strong background in statistics, I took a look at the shape of the logistic curve. This plot from Wikipedia ranges from [-6, 6], which conveniently is the range that's relevant to this problem:
+Not having an especially strong background in statistics, I took a look at the shape of the logistic curve. This plot from Wikipedia ranges from [-6, 6], which conveniently is exactly the range that's relevant to this problem:
 
 ![Logistic Curve plot from Wikipedia](./Logistic-curve.svg)
 
