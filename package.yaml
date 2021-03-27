@@ -1,0 +1,43 @@
+name:                2021q
+version:             0.1.0.0
+github:              "githubuser/2021q"
+license:             BSD3
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2021 Author name here"
+
+extra-source-files:
+- README.md
+
+_exe-defs: &exe-defaults
+  source-dirs:    src
+  dependencies:
+    - base >= 4.7 && < 5
+    - vector
+    - containers
+    - unordered-containers
+    - array
+    - transformers
+    - primitive
+
+_test-defs: &test-defaults
+  source-dirs:    test
+  dependencies:
+    - base >= 4.7 && < 5
+
+executables:
+  reversort:
+    main:         reversort.hs
+    <<:           *exe-defaults
+  moons:
+    main:         moons.hs
+    <<:           *exe-defaults
+  engineering:
+    main:         engineering.hs
+    <<:           *exe-defaults
+  median:
+    main:         median.hs
+    <<:           *exe-defaults
+  cheating:
+    main:         cheating.hs
+    <<:           *exe-defaults

@@ -1,0 +1,31 @@
+cradle:
+  stack:
+    - path: "./src/cheating.hs"
+      component: "2021q:exe:cheating"
+
+    - path: "./src/Paths_2021q.hs"
+      component: "2021q:exe:cheating"
+
+    - path: "./src/engineering.hs"
+      component: "2021q:exe:engineering"
+
+    - path: "./src/Paths_2021q.hs"
+      component: "2021q:exe:engineering"
+
+    - path: "./src/median.hs"
+      component: "2021q:exe:median"
+
+    - path: "./src/Paths_2021q.hs"
+      component: "2021q:exe:median"
+
+    - path: "./src/moons.hs"
+      component: "2021q:exe:moons"
+
+    - path: "./src/Paths_2021q.hs"
+      component: "2021q:exe:moons"
+
+    - path: "./src/reversort.hs"
+      component: "2021q:exe:reversort"
+
+    - path: "./src/Paths_2021q.hs"
+      component: "2021q:exe:reversort"
