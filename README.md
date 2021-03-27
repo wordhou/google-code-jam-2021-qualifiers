@@ -1,3 +1,25 @@
+Here's a collection of solutions and write-ups to Google's 2021 Code Jam qualifier round, written in Haskell.
+
+# Usage
+
+To build all problems:
+
+```
+stack build
+```
+
+To run one problem:
+
+```
+stack run [problemName]
+```
+
+To load a problem into the GHCI repl:
+
+```
+stack repl 2021q:exe:[problemName]
+```
+
 # reversort
 
 We're being asked to determine the cost of running the "reverse sort" algorithm on a given list of integers from `[1..n]`. The reverse sort algorithm proceeds as follows. Note that in the following pseudo-code the array is indexed starting from 1:
@@ -113,9 +135,9 @@ Not having an especially strong background in statistics, I took a look at the s
 
 ![Logistic Curve plot from Wikipedia](./Logistic-curve.svg)
 
-The difference for any given competitor-question pair ranges from -6 to 6 but is [concentrated in the middle](https://en.wikipedia.org/wiki/Triangular_distribution). However, we can infer from the graph that when a competitor has strength close to -3 and a problem has difficulty close to 3, there's almost zero change that the competitor can get the problem right. Even supposing a competitor had average strength, on the most difficult problems it looks like they have less than a 5% chance to get the problem right.
+The difference for any given competitor-question pair ranges from -6 to 6 but is [concentrated in the middle](https://en.wikipedia.org/wiki/Triangular_distribution). However, we can infer from the graph that when a competitor has strength close to -3 and a problem has difficulty close to 3, there's almost zero probability that the competitor can get the problem right. Even supposing a competitor had average strength, on the most difficult problems it they have less than a 5% chance to get the problem right.
 
-This gives us a basis on which to detect a cheater. I rank each competitor by a "cheat-indicator" function which sums the number of times a competitor gets a question right, weighted the difficulty of that question. Since I don't know enough statistics to be able to estimate the difficulty of a question from the data given, I'm using the number of times a question was answered correctly as a proxy for the difficulty of the question. To be specific, I took the inverse fourth power of the number of times a question was answered correctly. The cheat indicator was also weighted inversely by the estimated strength of the competitor, which was estimated by the number of questions they answered correctly. These parameters were arrived at experimentally, choosing values that gave the most separation between the known cheater and second-most-suspicious competitor in the cheat metric.
+This gives us a basis on which to detect a cheater. Rank each competitor by a "cheat-indicator" function which sums the number of times a competitor gets a question right, weighted the difficulty of that question. Since I don't know enough statistics to be able to estimate the difficulty of a question from the data given, I'm using the number of times a question was answered correctly as a proxy for the difficulty of the question. To be specific, I took the inverse fourth power of the number of times a question was answered correctly. The cheat indicator was also weighted inversely by the estimated strength of the competitor, which was estimated by the number of questions they answered correctly. These parameters were arrived at experimentally, choosing values that gave the most separation between the known cheater and second-most-suspicious competitor in the cheat metric.
 
 ```haskell
 sums :: [[Char]] -> [Int]
