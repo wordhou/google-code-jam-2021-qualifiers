@@ -7,6 +7,7 @@ main = readLn >>= \t -> forM_ [1..t] $ \t' ->
 
 getParams = getLine >> map read . words <$> getLine :: IO [Int]
 
+solve :: [Int] -> Int
 solve = go 1 where
   go _ [] = 0
   go n xs = let (xs', _:xs'') = span (/= n) xs in
